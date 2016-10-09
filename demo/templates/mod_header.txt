@@ -1,0 +1,21 @@
+****************************************************************************************************
+**                                      Basic Information                                         **
+****************************************************************************************************
+
+----------------- Dataset Information -----------------
+                         Country: {dataset.country|string}
+                    Country dode: {dataset.cc3|string}
+                       Data Year: {dataset.year|integer}
+                        Coverage: {dataset.coverage|string}
+             Welfare measurement: {dataset.measure|string}
+                     Data format: {dataset.format|string}
+                     Data source: {dataset.source|string}
+                  Data time span: {dataset.timespan|string}
+-------------------------------------------------------
+
+
+----------- Distribution ------------
+   i           P           L  
+-------------------------------------
+{|beginarray}{|ws}{distribution.index|integer}{|ws}{distribution.p|float}{|ws}{distribution.L|float}
+{|endarray}-----------------------------------------

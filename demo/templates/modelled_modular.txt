@@ -1,0 +1,54 @@
+
+{|include mod_header.txt}
+
+****************************************************************************************************
+**                                General Quadratic Lorenz curve                                  **
+****************************************************************************************************
+
+{quadratic|include mod_regression.txt}
+-----------------------------------------------
+      Coefficient   Standard error     t-ratio
+-----------------------------------------------
+ A      {quadratic.reg.params.A.coef|float}      {quadratic.reg.params.A.se|float}         {quadratic.reg.params.A.t|float}
+ B      {quadratic.reg.params.B.coef|float}      {quadratic.reg.params.B.se|float}         {quadratic.reg.params.B.t|float}
+ C      {quadratic.reg.params.C.coef|float}      {quadratic.reg.params.C.se|float}         {quadratic.reg.params.C.t|float}
+-----------------------------------------------
+
+
+
+{quadratic|include mod_summary.txt}
+
+
+
+****************************************************************************************************
+**                                      Beta Lorenz curve                                         **
+****************************************************************************************************
+
+{beta|include mod_regression.txt}
+-----------------------------------------------
+      Coefficient   Standard error     t-ratio
+-----------------------------------------------
+ A      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
+ B      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
+ C      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
+-----------------------------------------------
+
+------ The implied Beta lorenz curve ---------
+         Theta: {beta.implied.theta|float}
+         Gamma: {beta.implied.gamma|float}
+         Delta: {beta.implied.delta|float}
+----------------------------------------------
+
+
+{beta|include mod_summary.txt}
+
+****************************************************************************************************
+**                                         Final Result                                           **
+****************************************************************************************************
+
+ Distributional estimates use {dist.uses|word} {dist.uses_commentary|string}
+ Poverty estimates use {dist.uses|word} {dist.uses_commentary|string}
+
+{|include mod_summary.txt}
+
+
