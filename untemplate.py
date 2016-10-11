@@ -54,7 +54,7 @@ def normalise_pyjson(d):
             tail = kparts[1:]
             if head not in dnext:
                 dnext[head] = dict()
-            print("!!",dnext['beta'] if 'beta' in dnext else None,head,tail,v)
+            #print("!!",dnext['beta'] if 'beta' in dnext else None,head,tail,v)
             dnext[head]['.'.join(tail)] = v
         else:
             dnext[k] = v
@@ -119,7 +119,10 @@ class Varspec(object):
             regex += "((?:"
             for c in self.children:
                 regex += c.gen_regex()
-            regex += ")+)"            
+            regex += ")+)"
+#        elif self.vartype == 'or':
+#            regex +=
+#            # TODO
         elif self.vartype:
             regex += "(" + TYPES[self.vartype][0] + ")"
         return regex
@@ -176,7 +179,8 @@ def build_parser(template_filename, prefix=''):
         if spec:
             varname, vartype = spec.split('|')
             if prefix:
-                varname = prefix + "." + varname
+                if varname:
+                    varname = prefix + "." + varname
             if vartype == 'beginarray':
                 child = Varspec(parent, pre, varname, 'array')
                 parent.children.append(child)
@@ -185,10 +189,29 @@ def build_parser(template_filename, prefix=''):
                 child = Varspec(parent, pre, None, None)
                 parent.children.append(child)
                 parent = parent.parent
+#            elif vartype == 'beginor':
+#                options_child = Varspec(parent, pre, varname, 'options')
+#                first_option_child = Varspec(options_child, '', None, None)
+#                options_child.children.append(first_option_child)
+#                parent.children.append(child)
+#                parent = first_option_child
+#            elif vartype == 'endor':
+#                child = Varspec(parent, pre, None, None)
+#                parent.children.append(child)
+#                parent = parent.parent.parent
+#            elif vartype == 'or':
+#                child = Varspec(parent, pre, None, None)
+#                parent.children.append(child)
+#                parent.parent.children.append(next_option_child)
+#                next_option_child = 
             elif vartype.startswith('include '):
                 _, include_file = vartype.split()
                 include_file = os.path.join(working_template_path, include_file)
-                subtree = build_parser(include_file, varname)
+                if prefix:
+                    newprefix = prefix + "." + varname
+                else:
+                    newprefix = varname
+                subtree = build_parser(include_file, newprefix)
                 subtree.pre = pre 
                 parent.children.append(subtree)
             else:
@@ -200,10 +223,7 @@ def build_parser(template_filename, prefix=''):
             
     return parent
     
-def parse_text(parser, text_filename):
-    with open(text_filename) as f:
-        text = f.read()
-        
+def parse_text(parser, text):        
     regex = parser.gen_regex()
 #    with open(template_filename + ".regex", "w") as fout:
 #        fout.write(regex)
@@ -222,13 +242,19 @@ def parse_text(parser, text_filename):
 # the text and return the pyjson structure of variables extracted. Raises ParseError if no template
 # matched.
 def untemplate(template_filename, text_filename):
+    with open(text_filename) as f:
+        text = f.read()
+    
+    return untemplate_string(template_filename, text)
+
+def untemplate_string(template_filename, text):
     if isinstance(template_filename, str):
         template_filename = [template_filename]
         
     for tfn in template_filename:
         parser = build_parser(tfn)
         try:
-            obj = parse_text(parser, text_filename)
+            obj = parse_text(parser, text)
             return obj
         except ParseError:
             pass

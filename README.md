@@ -15,7 +15,7 @@ Untemplate reverses this process. Given a literal text, and a template specifica
 
 ```python
 template = "The {speed|word} {color|word} {animal|word} jumps over the lazy dog."
-formatted_text == "The quick brown fox jumps over the lazy dog"
+formatted_text = "The quick brown fox jumps over the lazy dog"
 
 variables = untemplate(template, formatted_text)
 ```

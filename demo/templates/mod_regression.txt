@@ -1,7 +1,7 @@
 --------------- Regression result -------------
- Ymean (Mean of dependent variable): {quadratic.reg.ymean|float}
-                   SST around ymean: {quadratic.reg.SST|float}
-         SSE (sum of squared error): {quadratic.reg.SSE|float}
-            Mean squared error: MSE: {quadratic.reg.MSE|float}
-      Root mean squared error: RMSE: {quadratic.reg.RMSE|float}
-                      R-squared: R2: {quadratic.reg.R2|float}
+ Ymean (Mean of dependent variable): {reg.ymean|float}
+                   SST around ymean: {reg.SST|float}
+         SSE (sum of squared error): {reg.SSE|float}
+            Mean squared error: MSE: {reg.MSE|float}
+      Root mean squared error: RMSE: {reg.RMSE|float}
+                      R-squared: R2: {reg.R2|float}

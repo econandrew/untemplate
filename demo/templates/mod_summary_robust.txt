@@ -8,17 +8,19 @@
 ------------------------------------------------------------------------
 
 ------------------------- Distributional Estimation --------------------
-                                         Gini index(%): {dist.Gini|float}
+{beginor}                                         Gini index(%): {dist.Gini|float}
                          median income(or expenditure): {dist.median_ppp|float}
                                              MLD index: {dist.MLD|float}
                                  polarization index(%): {dist.polarization|float}
                            distribution corrected mean: {dist.mean_corrected_ppp|float}(PPP$)
             mean income/expenditure of the poorest 50%: {dist.mean_poor50_ppp|float}(PPP$)
                                        estimate median: {dist.median_ppp|float}(PPP$)
-------------------------------------------------------------------------
+{or}
+  !! Not available !!
+{endor}------------------------------------------------------------------------
 
 ------------------------------------- Decile (%) -------------------------------------------
-{|beginarray}{|ws}{deciles|float}{|endarray}
+{|beginarray}{|ws}{decile|float}{|endarray}
 --------------------------------------------------------------------------------------------
 
 ---------------------------- Poverty Estimation ------------------------

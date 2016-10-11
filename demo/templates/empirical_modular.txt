@@ -1,29 +1,30 @@
 
+
 {|include mod_header.txt}
 
 
 ----------------- PPP$ and local currency --------------
-         PPP used in computation: {currency.ppp|float}
-     Data mean in local currency: {currency.mean.local|float}
-               Data mean in PPP$: {currency.mean.ppp|float}
-        Poverty line in PPP$/Day: {currency.pl.day.ppp|float}
-      Poverty line in PPP$/Month: {currency.pl.month.ppp|float}
-  Poverty line in local currency: {currency.pl.day.local|float}
+         PPP used in computation: {summary.ppp|float}
+     Data mean in local currency: {summary.mean_lcu|float}
+               Data mean in PPP$: {summary.mean_ppp|float}
+        Poverty line in PPP$/Day: {poverty.line_day_ppp|float}
+      Poverty line in PPP$/Month: {poverty.line_month_ppp|float}
+  Poverty line in local currency: {poverty.line_month_lcu|float}
 -------------------------------------------------------
 
 ----------------- Estimation result --------------
-     Number of observation: {estimation.N|integer}
-          Total population: {estimation.pop|float}
-              Total wealth: {estimation.wealth|float}{estimation.wealth_is_ppp|optstring}
-                   Minimum: {estimation.min|float}{estimation.min_is_ppp|optstring}
-                   Maximum: {estimation.max|float}{estimation.max_is_ppp|optstring}
-             Headcount(HC): {estimation.HC|float}
-          Poverty gap (PG): {estimation.PG|float}
-       Poverty gap squared: {estimation.PG2|float}
-                      Gini: {estimation.Gini|float}
-                    Median: {estimation.median|float}
-                       MLD: {estimation.MLD|float}
-                      Watt: {estimation.Watt|float}
+     Number of observation: {pop.N|integer}
+          Total population: {pop.pop|float}
+              Total wealth: {pop.wealth|float}{estimation.wealth_is_ppp|optstring}
+                   Minimum: {pop.min|float}{estimation.min_is_ppp|optstring}
+                   Maximum: {pop.max|float}{estimation.max_is_ppp|optstring}
+             Headcount(HC): {poverty.HC|float}
+          Poverty gap (PG): {poverty.PG|float}
+       Poverty gap squared: {poverty.FGT2|float}
+                      Gini: {dist.Gini|float}
+                    Median: {dist.median_ppp|float}
+                       MLD: {dist.MLD|float}
+                      Watt: {poverty.Watt|float}
 --------------------------------------------------
 
 -------------------------------- Income or Consumption share by deciles (%) -------------------------------------
