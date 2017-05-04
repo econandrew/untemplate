@@ -1,0 +1,39 @@
+-------------------------------  Summary -------------------------------
+                                                  Mean: 754.233
+   overall sum of squared error of fitted lorenz curve: 0.00011592
+      SSE of fitted lorenz curve up to headcount index: 7.28645E-07
+        input poverty line Z which is within the range: (0, 2700)
+                              Validity of lorenz curve: Invalid
+                         Normality of poverty estimate: Normal
+------------------------------------------------------------------------
+
+------------------------- Distributional Estimation --------------------
+                                         Gini index(%): 33.971
+                         median income(or expenditure): 154.406935443157
+                                             MLD index: 0.191108
+                                 polarization index(%): 28.4713
+                           distribution corrected mean: -0.270555(PPP$)
+            mean income/expenditure of the poorest 50%: 28.0678(PPP$)
+                                       estimate median: 41.7755(PPP$)
+------------------------------------------------------------------------
+
+--------------------------------------- Decile (%) -------------------------------------------
+      3.25362  4.43095  5.48966  6.50995  7.55821  8.71076  10.0871  11.9371  15.0197   27.003
+----------------------------------------------------------------------------------------------
+
+---------------------------- Poverty Estimation ------------------------
+                                          Poverty line: 57.7917
+                                         Headcount(HC): 0.708414
+                                      Poverty gap (PG): 0.423218
+                                     PG squared (FGT2): 0.422218
+                                            Watt index: 0.000229014
+------------------------------------------------------------------------
+
+   ------------- Elasticities with respect to  ----------
+    Index	              Mean consumption    Gini index
+   ------------------------------------------------------
+    Headcount(HC)         -1.62562          19.5902
+    Poverty gap (PG)     -0.673873          21.1717
+    PG squared (FGT2)  -0.00473689          26.1589
+   ------------------------------------------------------
+   

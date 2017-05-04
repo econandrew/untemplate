@@ -7,28 +7,32 @@
                          Normality of poverty estimate: {summary.normality|word}
 ------------------------------------------------------------------------
 
-------------------------- Distributional Estimation --------------------
-{beginor}                                         Gini index(%): {dist.Gini|float}
+{|beginor}------------------------- Distributional Estimation --------------------
+                                         Gini index(%): {dist.Gini|float}
                          median income(or expenditure): {dist.median_ppp|float}
                                              MLD index: {dist.MLD|float}
                                  polarization index(%): {dist.polarization|float}
-                           distribution corrected mean: {dist.mean_corrected_ppp|float}(PPP$)
-            mean income/expenditure of the poorest 50%: {dist.mean_poor50_ppp|float}(PPP$)
-                                       estimate median: {dist.median_ppp|float}(PPP$)
-{or}
-  !! Not available !!
-{endor}------------------------------------------------------------------------
+{|beginor}                           distribution corrected mean: {dist.mean_corrected|float}{dist.mean_corrected_is_ppp|word}
+            mean income/expenditure of the poorest 50%: {dist.mean_poor50|float}{dist.mean_poor50_is_ppp|word}
+                                       estimate median: {dist.median|float}{dist.median_is_ppp|word}
+{|or}                           distribution corrected mean: {dist.mean_corrected|float}
+            mean income/expenditure of the poorest 50%: {dist.mean_poor50|float}
+                                       estimate median: {dist.median|float}
+{|endor}------------------------------------------------------------------------
 
 ------------------------------------- Decile (%) -------------------------------------------
-{|beginarray}{|ws}{decile|float}{|endarray}
+{|beginarray}{|ws}{deciles|float}{|endarray}
 --------------------------------------------------------------------------------------------
-
----------------------------- Poverty Estimation ------------------------
+{|or}------------------------- Distributional Estimation --------------------
+  !! Not available !!
+------------------------------------------------------------------------
+{|endor}
+{|beginor}---------------------------- Poverty Estimation ------------------------
                                           Poverty line: {poverty.line_month_ppp|float}
                                          Headcount(HC): {poverty.HC|float}
                                       Poverty gap (PG): {poverty.PG|float}
                                      PG squared (FGT2): {poverty.FGT2|float}
-                                            Watt index: {poverty.Watt|float}
+                                            Watt index: {poverty.Watt|string}
 ------------------------------------------------------------------------
 
    ------------- Elasticities with respect to  ----------
@@ -38,3 +42,7 @@
     Poverty gap (PG)      {elasticity.PG.meancons|float}          {elasticity.PG.Gini|float}
     PG squared (FGT2)     {elasticity.FGT2.meancons|float}          {elasticity.FGT2.Gini|float}
    ------------------------------------------------------
+{|or}---------------------------- Poverty Estimation ------------------------
+  !! Not available !!
+------------------------------------------------------------------------
+{|endor}

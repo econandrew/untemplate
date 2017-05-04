@@ -26,7 +26,7 @@
                                          Headcount(HC): {poverty.HC|float}
                                       Poverty gap (PG): {poverty.PG|float}
                                      PG squared (FGT2): {poverty.FGT2|float}
-                                            Watt index: {poverty.Watt|float}
+                                            Watt index: {poverty.Watt|string}
 ------------------------------------------------------------------------
 
    ------------- Elasticities with respect to  ----------

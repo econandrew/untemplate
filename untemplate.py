@@ -7,12 +7,13 @@ import os
 
 # A set of type definitions: first element is regex to match, second is type converter
 TYPES = {
-    'float': (r'(?:\-)?[0-9]*(?:\.[0-9]*)?(?:[eE][\-\+]?[0-9]+)?|[0-9]+', float),
+    #'float': (r'(?:\-)?[0-9]*(?:\.[0-9]*)?(?:[eE][\-\+]?[0-9]+)?|[0-9]+', float),
+    'float': (r'[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?|[-+]?NaN|[-+]?Infinity|[-+]?Inf', float),
     'integer': (r'[0-9]+', int),
     'word': (r'[^\s]+', str),
     'string': (r'[^\n]+', lambda s: s.strip()),
     'optstring': (r'[^\n]*', lambda s: s.strip()),
-    'ws': (r'\s*', str)
+    'ws': (r'\s+', str)
 }
 
 # Single characters that should be collapsed from literal to regex. If 2 or more of one of these characters
@@ -120,9 +121,12 @@ class Varspec(object):
             for c in self.children:
                 regex += c.gen_regex()
             regex += ")+)"
-#        elif self.vartype == 'or':
-#            regex +=
-#            # TODO
+        elif self.vartype == 'beginor':
+            regex += "(?:(?:"
+        elif self.vartype == 'or':
+            regex += ")|(?:"
+        elif self.vartype == 'endor':
+            regex += "))"
         elif self.vartype:
             regex += "(" + TYPES[self.vartype][0] + ")"
         return regex
@@ -130,6 +134,7 @@ class Varspec(object):
     # Fills the given dictionary with variables extracted in groups, the result
     # of applying regex to a matching text.
     def build(self, parent_dict, groups):
+        #print(self.varname, self.vartype, groups[0] if len(groups) > 0 else 'nil')
         obj = None
         if self.vartype == 'root':
             for c in self.children:
@@ -137,10 +142,12 @@ class Varspec(object):
         elif self.vartype == 'array':
             obj = list()
             g_children = groups.pop(0)
+            groups[:] = groups[len(self.children)-1:] # swallow the child captures
+            if g_children is None: # if inside a not-activated or block
+                return
             regex = ""
             for c in self.children:
                 regex += c.gen_regex()
-            groups[:] = groups[len(self.children)-1:]
 
             m = re.match(regex, g_children)
             while g_children and m:
@@ -157,9 +164,12 @@ class Varspec(object):
             else: # flatten arrays
                 dol = lod2dol(obj)
                 parent_dict.update(dol)
+        elif self.vartype in ('beginor', 'or', 'endor'):
+                pass
         elif self.vartype:
+            #print(self.vartype, groups)
             group = groups.pop(0)
-            if self.varname:
+            if self.varname and group is not None:  # if inside a not-activated or block
                 try:
                     obj = TYPES[self.vartype][1](group)
                     parent_dict[self.varname] = obj
@@ -189,21 +199,24 @@ def build_parser(template_filename, prefix=''):
                 child = Varspec(parent, pre, None, None)
                 parent.children.append(child)
                 parent = parent.parent
-#            elif vartype == 'beginor':
-#                options_child = Varspec(parent, pre, varname, 'options')
-#                first_option_child = Varspec(options_child, '', None, None)
-#                options_child.children.append(first_option_child)
-#                parent.children.append(child)
-#                parent = first_option_child
-#            elif vartype == 'endor':
-#                child = Varspec(parent, pre, None, None)
-#                parent.children.append(child)
-#                parent = parent.parent.parent
-#            elif vartype == 'or':
-#                child = Varspec(parent, pre, None, None)
-#                parent.children.append(child)
-#                parent.parent.children.append(next_option_child)
-#                next_option_child = 
+
+#           elif vartype == 'beginor':
+#               child = Varspec(parent, pre, None, 'optionset')
+#               grandchild = Varspec(child, None, varname, 'option')
+#               parent.children.append(child)
+#               child.children.append(grandchild)
+#               parent = grandchild
+#           elif vartype == 'or':
+#               parent = parent.parent
+#               grandchild = Varspec(parent, pre, None, None)
+#               parent.children.append(child)
+#               parent.parent.children.append(next_option_child)
+#               next_option_child =
+#           elif vartype == 'endor':
+#               child = Varspec(parent, pre, None, None)
+#               parent.children.append(child)
+#               parent = parent.parent.parent
+
             elif vartype.startswith('include '):
                 _, include_file = vartype.split()
                 include_file = os.path.join(working_template_path, include_file)
@@ -223,13 +236,13 @@ def build_parser(template_filename, prefix=''):
             
     return parent
     
-def parse_text(parser, text):        
+def parse_text(parser, text):      
     regex = parser.gen_regex()
-#    with open(template_filename + ".regex", "w") as fout:
-#        fout.write(regex)
+    with open("debug.regex", "w") as fout:
+        fout.write(regex)
         
     m = re.match(regex, text)
-    
+    #print(len(m.groups()), m.groups())
     if m:
         obj = dict()
         parser.build(obj, list(m.groups()))

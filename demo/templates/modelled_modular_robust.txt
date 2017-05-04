@@ -17,7 +17,7 @@
 
 
 
-{quadratic|include mod_summary.txt}
+{quadratic|include mod_summary_robust.txt}
 
 
 
@@ -41,15 +41,15 @@
 ----------------------------------------------
 
 
-{beta|include mod_summary.txt}
+{beta|include mod_summary_robust.txt}
 
 ****************************************************************************************************
 **                                         Final Result                                           **
 ****************************************************************************************************
 
  Distributional estimates use {dist.uses|word} {dist.uses_commentary|string}
- Poverty estimates use {dist.uses|word} {dist.uses_commentary|string}
+ Poverty estimates use {poverty.uses|word} {poverty.uses_commentary|string}
 
-{|include mod_summary.txt}
+{|include mod_summary_robust.txt}
 
 
