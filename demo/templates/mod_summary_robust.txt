@@ -1,10 +1,10 @@
 -------------------------------  Summary -------------------------------
                                                   Mean: {summary.mean_ppp|float}
-   overall sum of squared error of fitted lorenz curve: {summary.sse.fitted|float}
-      SSE of fitted lorenz curve up to headcount index: {summary.sse.tohc|float}
+   overall sum of squared error of fitted lorenz curve: {summary.sse_fitted|float}
+      SSE of fitted lorenz curve up to headcount index: {summary.sse_up_to_hcindex|float}
         input poverty line Z which is within the range: ({summary.Z.low|float}, {summary.Z.high|float})
-                              Validity of lorenz curve: {summary.validity|word}
-                         Normality of poverty estimate: {summary.normality|word}
+                              Validity of lorenz curve: {summary.lorenz_validity|word}
+                         Normality of poverty estimate: {summary.poverty_normality|word}
 ------------------------------------------------------------------------
 
 {|beginor}------------------------- Distributional Estimation --------------------
@@ -12,16 +12,13 @@
                          median income(or expenditure): {dist.median_ppp|float}
                                              MLD index: {dist.MLD|float}
                                  polarization index(%): {dist.polarization|float}
-{|beginor}                           distribution corrected mean: {dist.mean_corrected|float}{dist.mean_corrected_is_ppp|word}
-            mean income/expenditure of the poorest 50%: {dist.mean_poor50|float}{dist.mean_poor50_is_ppp|word}
-                                       estimate median: {dist.median|float}{dist.median_is_ppp|word}
-{|or}                           distribution corrected mean: {dist.mean_corrected|float}
-            mean income/expenditure of the poorest 50%: {dist.mean_poor50|float}
-                                       estimate median: {dist.median|float}
-{|endor}------------------------------------------------------------------------
+                           distribution corrected mean: {dist.mean_corrected|float}{dist.mean_corrected_is_ppp|optstring}
+            mean income/expenditure of the poorest 50%: {dist.mean_poor50|float}{dist.mean_poor50_is_ppp|optstring}
+                                       estimate median: {dist.median|float}{dist.median_is_ppp|optstring}
+------------------------------------------------------------------------
 
 ------------------------------------- Decile (%) -------------------------------------------
-{|beginarray}{|ws}{deciles|float}{|endarray}
+{|beginarray}{|ws}{dist.deciles|float}{|endarray}
 --------------------------------------------------------------------------------------------
 {|or}------------------------- Distributional Estimation --------------------
   !! Not available !!
@@ -38,9 +35,9 @@
    ------------- Elasticities with respect to  ----------
     Index	              Mean consumption    Gini index
    ------------------------------------------------------
-    Headcount(HC)         {elasticity.HC.meancons|float}          {elasticity.HC.Gini|float}
-    Poverty gap (PG)      {elasticity.PG.meancons|float}          {elasticity.PG.Gini|float}
-    PG squared (FGT2)     {elasticity.FGT2.meancons|float}          {elasticity.FGT2.Gini|float}
+    Headcount(HC)         {poverty.elasticity.HC_wrt_mean_C|float}          {poverty.elasticity.HC_wrt_Gini|float}
+    Poverty gap (PG)      {poverty.elasticity.PG_wrt_mean_C|float}          {poverty.elasticity.PG_wrt_Gini|float}
+    PG squared (FGT2)     {poverty.elasticity.FGT2_wrt_mean_C|float}          {poverty.elasticity.FGT2_wrt_Gini|float}
    ------------------------------------------------------
 {|or}---------------------------- Poverty Estimation ------------------------
   !! Not available !!

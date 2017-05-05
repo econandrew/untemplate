@@ -4,7 +4,7 @@
 
 ----------------- Dataset Information -----------------
                          Country: {dataset.country|string}
-                    Country dode: {dataset.cc3|string}
+                    Country dode: {dataset.iso3c|string}
                        Data Year: {dataset.year|integer}
                         Coverage: {dataset.coverage|string}
              Welfare measurement: {dataset.measure|string}
@@ -17,5 +17,5 @@
 ----------- Distribution ------------
    i           P           L  
 -------------------------------------
-{|beginarray}{|ws}{distribution.index|integer}{|ws}{distribution.p|float}{|ws}{distribution.L|float}
+{|beginarray}{|ws}{lorenz.index|integer}{|ws}{lorenz.p|float}{|ws}{lorenz.L|float}
 {|endarray}-----------------------------------------

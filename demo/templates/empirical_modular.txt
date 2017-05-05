@@ -5,19 +5,19 @@
 
 ----------------- PPP$ and local currency --------------
          PPP used in computation: {summary.ppp|float}
-     Data mean in local currency: {summary.mean_lcu|float}
-               Data mean in PPP$: {summary.mean_ppp|float}
+     Data mean in local currency: {summary.mean_month_lcu|float}
+               Data mean in PPP$: {summary.mean_month_ppp|float}
         Poverty line in PPP$/Day: {poverty.line_day_ppp|float}
       Poverty line in PPP$/Month: {poverty.line_month_ppp|float}
   Poverty line in local currency: {poverty.line_month_lcu|float}
 -------------------------------------------------------
 
 ----------------- Estimation result --------------
-     Number of observation: {pop.N|integer}
-          Total population: {pop.pop|float}
-              Total wealth: {pop.wealth|float}{estimation.wealth_is_ppp|optstring}
-                   Minimum: {pop.min|float}{estimation.min_is_ppp|optstring}
-                   Maximum: {pop.max|float}{estimation.max_is_ppp|optstring}
+     Number of observation: {sample.N|integer}
+          Total population: {sample.effective_pop_N|float}
+              Total wealth: {sample.effective_pop_wealth|float}{sample.effective_pop_wealth_is_ppp|optstring}
+                   Minimum: {sample.month_min|float}{sample.month_min_is_ppp|optstring}
+                   Maximum: {sample.month_max|float}{sample.month_max_is_ppp|optstring}
              Headcount(HC): {poverty.HC|float}
           Poverty gap (PG): {poverty.PG|float}
        Poverty gap squared: {poverty.FGT2|float}
@@ -28,5 +28,5 @@
 --------------------------------------------------
 
 -------------------------------- Income or Consumption share by deciles (%) -------------------------------------
-{|beginarray}{|ws}{deciles|float}{|endarray}
+{|beginarray}{|ws}{dist.deciles|float}{|endarray}
 -----------------------------------------------------------------------------------------------------------------

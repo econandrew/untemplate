@@ -177,10 +177,14 @@ class Varspec(object):
                     print(group)
                     raise e    
    
-def build_parser(template_filename, prefix=''):
+def build_parser(template_filename, prefix='', loose=False):
     working_template_path, _ = os.path.split(template_filename)
     with open(template_filename) as f:
         template = f.read()
+
+    if loose:
+        template = template.strip()
+        print("Loose whitespace")
 
     insertions = string.Formatter().parse(template)
 
@@ -236,19 +240,22 @@ def build_parser(template_filename, prefix=''):
             
     return parent
     
-def parse_text(parser, text):      
+def parse_text(parser, text, loose):      
     regex = parser.gen_regex()
     with open("debug.regex", "w") as fout:
         fout.write(regex)
-        
+
+    if loose:
+        text = text.strip()
+    
     m = re.match(regex, text)
-    #print(len(m.groups()), m.groups())
     if m:
         obj = dict()
         parser.build(obj, list(m.groups()))
         obj = normalise_pyjson(obj)
         return obj
     else:
+        #print(repr(regex), repr(text))
         raise ParseError()
 
 # Given a template_filename (or list of possible templates) and a text_filename, applies the template to
@@ -265,9 +272,9 @@ def untemplate_string(template_filename, text):
         template_filename = [template_filename]
         
     for tfn in template_filename:
-        parser = build_parser(tfn)
+        parser = build_parser(tfn, loose=False)
         try:
-            obj = parse_text(parser, text)
+            obj = parse_text(parser, text, loose=False)
             return obj
         except ParseError:
             pass
