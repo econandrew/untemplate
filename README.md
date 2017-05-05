@@ -1,3 +1,5 @@
+Note - this is a really impractical implementation of a basically sound specification (it compiles templates into a giant regex which is then impossible to debug).
+
 # Untemplate - a python untemplating engine
 
 Popular templating engines take a text template, which is literal output text interpersed with variables, control statements, etc, and produce a literal text output. For example, the canonical `format_template` functions works as follows:
