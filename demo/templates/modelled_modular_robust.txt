@@ -30,8 +30,8 @@
       Coefficient   Standard error     t-ratio
 -----------------------------------------------
  A      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
- B      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
- C      {beta.reg.params.A.coef|float}      {beta.reg.params.A.se|float}         {beta.reg.params.A.t|float}
+ B      {beta.reg.params.B.coef|float}      {beta.reg.params.B.se|float}         {beta.reg.params.B.t|float}
+ C      {beta.reg.params.C.coef|float}      {beta.reg.params.C.se|float}         {beta.reg.params.C.t|float}
 -----------------------------------------------
 
 ------ The implied Beta lorenz curve ---------

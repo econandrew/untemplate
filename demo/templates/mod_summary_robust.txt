@@ -1,5 +1,5 @@
 -------------------------------  Summary -------------------------------
-                                                  Mean: {summary.mean_ppp|float}
+                                                  Mean: {summary.mean_month_ppp|float}
    overall sum of squared error of fitted lorenz curve: {summary.sse_fitted|float}
       SSE of fitted lorenz curve up to headcount index: {summary.sse_up_to_hcindex|float}
         input poverty line Z which is within the range: ({summary.Z.low|float}, {summary.Z.high|float})
